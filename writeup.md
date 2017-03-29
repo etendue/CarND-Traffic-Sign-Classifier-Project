@@ -74,7 +74,7 @@ It seems that, the train data are not evenly distributed, especially classes bet
 #### 1. preprocessing
 The traffic images as input are normalized by simply dividing the pixel value with 255. For train data the inputs and labels are shuffled for training, as original train data are grouped by labels It is necessary for SGD other training technology 
 
-I shifted the converting images to grayscale inside the Model as Tensorflow provides the function [**tf.image.rgb_to_grayscale()**] (https://www.tensorflow.org/versions/r1.1/api_docs/python/tf/image/rgb_to_grayscale)
+I shifted the converting images to grayscale inside the Model as Tensorflow provides the function [**tf.image.rgb_to_grayscale()**](https://www.tensorflow.org/versions/r1.1/api_docs/python/tf/image/rgb_to_grayscale)
 
 
 The code for this step is contained in the fourth code cell of the IPython notebook.
