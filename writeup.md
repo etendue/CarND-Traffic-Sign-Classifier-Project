@@ -27,7 +27,7 @@ The goals / steps of this project are the following:
 [image11]: ./examples/Convolution_Layer2.png "Activatin of conv layer 2"
 
 ## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
+Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
 ---
 ### Writeup / README
@@ -54,14 +54,14 @@ I got the  following summary statistics of the traffic signs data set by analyzi
 The code for this step is contained in the third code cell of the IPython notebook.  
 
 #### 1. visualization of randomly picked train data
-The code ramdonly picked 5 traffic sign images from train data and plotted using matplotlib tool. The traffic sign names are read using **pandas** lib to decorate the title of each subplot figure.
+The code randomly picked 5 traffic sign images from train data and plotted using matplotlib tool. The traffic sign names are read using **pandas** lib to decorate the title of each subplot figure.
 Here shows the figure.
 
 ![alt text][image1]
 
 #### 2. visualization of train data vs classes
-Following is  a histgram chart showing how the train data is distributed over different traffic signs,i.e. classes or labels
-It seems that, the train data are not evenly distributed, especially classes between **20 ~ 40** are lower than other classes. This is potentially entry point for improvement by either adding new **augumented** train data for these classes
+Following is  a histogram chart showing how the train data is distributed over different traffic signs, i.e. classes or labels
+It seems that, the train data are not evenly distributed, especially classes between **20 ~ 40** are lower than other classes. This is potentially entry point for improvement by either adding new **augmented** train data for these classes
 
 ![alt text][image2]
 
@@ -72,7 +72,7 @@ It seems that, the train data are not evenly distributed, especially classes bet
 ![alt text][image3]
 
 #### 1. preprocessing
-The traffic images as input are normalized by simply dividing the pixel value with 255. For train data the inputs and labels are shuffled for trainning, as original train data are grouped by labels It is necessary for SGD other training technology 
+The traffic images as input are normalized by simply dividing the pixel value with 255. For train data the inputs and labels are shuffled for training, as original train data are grouped by labels It is necessary for SGD other training technology 
 
 I shifted the converting images to grayscale inside the Model as Tensorflow provides the function [**tf.image.rgb_to_grayscale()**] (https://www.tensorflow.org/versions/r1.1/api_docs/python/tf/image/rgb_to_grayscale)
 
@@ -81,7 +81,7 @@ The code for this step is contained in the fourth code cell of the IPython noteb
 
 
 #### 2. Train, validation and testing data
-The data sets for train,validatin and testing are load from pickle files. Only for Train the data is shuffled, and it is also shuffled during training(see in code cell 12) I did not augument new data so no further processing for above data set is done. 
+The data sets for train,validatoin and testing are load from pickle files. Only for Train the data is shuffled, and it is also shuffled during training(see in code cell 12) I did not augument new data so no further processing for above data set is done. 
 
 
 
@@ -110,7 +110,7 @@ My final model consisted of the following layers:
 | Fully connected		| output 84 x 43  							    |
 | Softmax				| output 43    									|
 
-The Layer= Conv1_2ndPooling + Conv2 is inspired from [paper](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf).In this paper it is called multi-scale structure, meaning the full-connected layer sees not only the activation of second convolution layer but also the activation from first convultion layer. The idea behindes is related to peceptive fields of eye which is out of current scope. In practice it seems by doing this improving the validation precision about 0.5 percent. 
+The Layer= Conv1_2ndPooling + Conv2 is inspired from [paper](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf).In this paper it is called multi-scale structure, meaning the full-connected layer sees not only the activation of second convolution layer but also the activation from first convolution layer. The idea behinds is related to perceptive fields of eye which is out of current scope. In practice it seems by doing this improving the validation precision about 0.5 percent. 
 
 
 #### 4. Train, Validate and Test the model
@@ -120,8 +120,8 @@ The code for training the model is located in the 8th,9th,10th,11th, 12th cell o
 To train the model, I used batch size 128, epochs 20 and learning rate 0.001 with AdamOptimizer and cost function of softmax cross_entropy with logits. I wrote the train code by taking reference from [CarND_LeNet_Lab](https://github.com/udacity/CarND-LeNet-Lab) and did some adaptation like introducing dropout parameter. 
 
 In 11 code cell, I wrote 2 evaluate functions.
-* evaluate : get a overall validation accurary for whole testing data
-* evaluate_more: get the validation accuraries vs classes
+* evaluate : get a overall validation accuracy for whole testing data
+* evaluate_more: get the validation accuracies vs classes
 
 The second evaluate function is used to inspect the model, where are the performance deficiency. 
 
@@ -131,11 +131,11 @@ The second evaluate function is used to inspect the model, where are the perform
 The code for calculating the accuracy of the model is located in the 13th cell of the Ipython notebook.
 
 My final model results were:
-* training set accuracy of ?
+* training set accuracy of 0.993
 * validation set accuracy of 0.961 
 * test set accuracy of 0.945
 
-As I described the different steps to evolve the model. I tried establishing a working model which can do the basics then by changing some parts to get improvement or not. I could have spent a lot of time by trying differnt parameters alone, but there are good reference models available online so I took them and combined a little bit and  finally realized one in restricted time line.
+As I described the different steps to evolve the model. I tried establishing a working model which can do the basics then by changing some parts to get improvement or not. I could have spent a lot of time by trying different parameters alone, but there are good reference models available online so I took them and combined a little bit and  finally realized one in restricted time line.
 
 I took the model of LeNet from [github CarND-LeNet-Lab](https://github.com/udacity/CarND-LeNet-Lab) and adapted it step by step. Here is what I did.
 
@@ -143,25 +143,25 @@ I took the model of LeNet from [github CarND-LeNet-Lab](https://github.com/udaci
 | --------|--------------------|
 | orginal network with adaptation of input format and adjusted the number of convolution nodes. 6x16 to 22x38 | 0.918 |
 | convert input image from rgb to grayscale | 0.891 |
-| increase the number of convolutio nodes 22x38 to 108x108 |0.936 |
+| increase the number of convolution nodes 22x38 to 108x108 |0.936 |
 | add dropout regularization after fully connected layers  |0.949 |
-| incease the train epoches |0.963|
+| increase the train epochs |0.963|
 | apply the multi-scale model [see reference](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf) | 0.968|
 
 
-The final model architecture is chosed by accumulating all above steps and is illustrated here. Here I describe the final model in details.
+The final model architecture is chosen by accumulating all above steps and is illustrated here. Here I describe the final model in details.
 
 
 I have some doubts/questions on my final model:
 * it is probably overfitted.
-* augument more train samples may likely improve the accuracy.(see my analysis on accuracy vs classes)
+* augment more train samples may likely improve the accuracy.(see my analysis on accuracy vs classes)
 
-Since the decision of model and its hyperparameters is highly empirical, the final justificaiton of model selection is only the test/validation accurarcy of tried models. 
+Since the decision of model and its parameters is highly empirical, the final justificaiton of model selection is only the test/validation accuracy of tried models. 
 
 #### 6. Accuracy vs classes
 
 In 14th cell code I ran the evaluation\_more function to get a diagram of accuracy vs classes. I saw that accuracies differ dramatically over classes. Especially it is low between classes 20 ~ 30, where in this range the number of train data are also low.
-See belowing picutre. This strongly recommend to add more train data for classes 20 ~ 30 or which class has low amount of train  data.
+See picture below. This strongly recommend to add more train data for classes 20 ~ 30 or which class has low amount of train  data.
 
 
 ![alt text][image9] 
@@ -201,7 +201,7 @@ Here are the results of the prediction:
 
 The model was able to correctly guess 5 of the 5 traffic signs, which gives an accuracy of 100%. This compares favorably to the accuracy on the test set of 94.9%
 
-In 18th and 19th code cells depicts the top 5 candidate for recognized traffic signs and their probabities repectively. The model is quite sure about the recognized traffic classes on new traffic sign images. By looking at the probabilites of top 5 recognized classes, the first class has probability > 99% 
+In 18th and 19th code cells depicts the top 5 candidate for recognized traffic signs and their probabilities receptively. The model is quite sure about the recognized traffic classes on new traffic sign images. By looking at the probabilities of top 5 recognized classes, the first class has probability > 99% 
 
 
 ### Step 4: Visualization of Neural Network's State with Test Images
